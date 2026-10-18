@@ -80,7 +80,8 @@ export default function StudioV3() {
       (landscape.material as THREE.MeshBasicMaterial).color.setHex(m === 'day' ? 0xffffff : m === 'sunset' ? 0xeaa078 : 0x1c2945);
     };
 
-    new GLTFLoader().load('/models/Clos-Luce-Leonardo-Atelier.glb', (gltf) => {
+    const publicBase = import.meta.env.BASE_URL || '/';
+    new GLTFLoader().load(`${publicBase}models/Clos-Luce-Leonardo-Atelier.glb`, (gltf) => {
       model = gltf.scene; scene.add(model);
       const materials = new Set<THREE.Material>(), textures = new Set<THREE.Texture>(); let meshes = 0, nodes = 0;
       const named: Record<string, { name: string; position: number[]; size: number[] }> = {};
